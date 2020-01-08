@@ -33,7 +33,7 @@ public class Telefone implements Serializable {
     @Column(name = "NUMERO_TEL")
     private String numeroTel;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente")
     private Cliente cliente;
 
