@@ -31,7 +31,7 @@ public class ClienteService {
         repository.save(cliente);
     }
 
-    @GetMapping
+    @GetMapping(headers = "Accept=application/json")
     public ResponseEntity<Iterable<ClienteDTO>> findAll(){
         return ResponseEntity.ok(getClienteDTO(repository.findAll()));
     }
