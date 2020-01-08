@@ -3,6 +3,7 @@ package com.desafio.backEndDesafio.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,8 +24,8 @@ public class Endereco implements Serializable {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(generator = "SQ_ENDERECO", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "SQ_ENDERECO", sequenceName = "desafio.SQ_ENDERECO", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
 
     @Column(name = "cep")
