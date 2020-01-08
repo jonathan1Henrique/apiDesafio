@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name = "telefone", schema = "desafio")
+@Table(name = "telefone")
 public class Telefone implements Serializable {
 
     private static final long serialVersionUID = 1L;
