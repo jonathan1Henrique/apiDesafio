@@ -10,13 +10,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.WebParam;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 @RestController
 @RequestMapping(
           path = "/cliente",
-          produces = {MediaType.APPLICATION_JSON_VALUE})
+          produces = {MediaType.APPLICATION_JSON_VALUE},name = ValueConstants.DEFAULT_NONE)
 public class ClienteService {
 
     @Autowired
@@ -31,17 +33,9 @@ public class ClienteService {
         repository.save(cliente);
     }
 
-    @GetMapping(headers = "Accept=application/json")
+    @GetMapping("/lista-clientes")
     public ResponseEntity<Iterable<ClienteDTO>> findAll(){
-        return ResponseEntity.ok(getClienteDTO(repository.findAll()));
-    }
-
-    private Iterable<ClienteDTO> getClienteDTO(Iterable<Cliente> cliente) {
-        List<ClienteDTO> all = new ArrayList<>();
-        for (Cliente c: cliente) {
-            all.add(new ClienteDTO(c));
-        }
-        return all;
+        return ResponseEntity.ok(new ClienteDTO().getClienteDTO(repository.findAll()));
     }
 
     private List<Telefone> setClienteTelefone(Cliente cliente){
