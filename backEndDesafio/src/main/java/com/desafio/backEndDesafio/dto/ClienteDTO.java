@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -31,6 +32,14 @@ public class ClienteDTO {
         this.email = cliente.getEmail();
         this.telefone = new TelefoneDTO().trasformaTelefoneDTO(cliente.getTelefone());
         this.endereco = new EnderecoDTO(cliente.getEndereco());
+    }
+
+    public Iterable<ClienteDTO> getClienteDTO(Iterable<Cliente> cliente) {
+        List<ClienteDTO> all = new ArrayList<>();
+        for (Cliente c: cliente) {
+            all.add(new ClienteDTO(c));
+        }
+        return all;
     }
 
 }
